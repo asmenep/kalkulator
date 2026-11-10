@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Butterfly Calculator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>🦋 Butterfly Calculator 🦋</h2>
+<p>♡ Kalkulator Pink ♡</p>
+
+<input type="text" id="layar" readonly>
+
+<br>
+
+<button onclick="hapus()">C</button>
+<button onclick="tambah('/')">÷</button>
+<button onclick="tambah('*')">×</button>
+<button onclick="hapusSatu()">⌫</button>
+
+<br>
+
+<button onclick="tambah('7')">7 🦋</button>
+<button onclick="tambah('8')">8</button>
+<button onclick="tambah('9')">9</button>
+<button onclick="tambah('-')">−</button>
+
+<br>
+
+<button onclick="tambah('4')">4</button>
+<button onclick="tambah('5')">5</button>
+<button onclick="tambah('6')">6</button>
+<button onclick="tambah('+')">+</button>
+
+<br>
+
+<button onclick="tambah('1')">1</button>
+<button onclick="tambah('2')">2</button>
+<button onclick="tambah('3')">3</button>
+<button onclick="hitung()" class="hasil">=</button>
+
+<br>
+
+<button onclick="tambah('0')">0</button>
+<button onclick="tambah('.')">.</button>
+
+<p>🦋 Sweet Pink Calculator 🦋</p>
+
+</div>
+
+<script>
+function tambah(nilai) {
+  document.getElementById("layar").value += nilai;
+}
+
+function hapus() {
+  document.getElementById("layar").value = "";
+}
+
+function hapusSatu() {
+  let layar = document.getElementById("layar");
+  layar.value = layar.value.slice(0, -1);
+}
+
+function hitung() {
+  let layar = document.getElementById("layar");
+
+  try {
+    if (!/^[0-9+\-*/.() ]+$/.test(layar.value)) {
+      throw new Error();
+    }
+
+    layar.value = Function(
+      '"use strict"; return (' + layar.value + ')'
+    )();
+  } catch {
+    layar.value = "Error";
+  }
+}
+</script>
+
+</body>
+</html>
